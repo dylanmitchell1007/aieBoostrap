@@ -15,17 +15,20 @@ public:
 	// all draw calls must occur between a begin / end pair
 	virtual void begin();
 	virtual void end();
+	
 
 	// simple shape rendering
 	virtual void drawBox(float xPos, float yPos, float width, float height, float rotation = 0.0f, float depth = 0.0f);
+	void drawGrass(float xPos, float yPos, float width, float height, float rotation, float depth);
 	virtual void drawCircle(float xPos, float yPos, float radius, float depth = 0.0f);
+	virtual void drawGrass(float xPos, float yPos, float radius, float depth = 0.0f);
 
 	// if texture is nullptr then it renders a coloured sprite
 	// depth is in the range [0,100] with lower being closer to the viewer
 	virtual void drawSprite(Texture* texture, float xPos, float yPos, float width = 0.0f, float height = 0.0f, float rotation = 0.0f, float depth = 0.0f, float xOrigin = 0.5f, float yOrigin = 0.5f);
 	virtual void drawSpriteTransformed3x3(Texture* texture, float* transformMat3x3, float width = 0.0f, float height = 0.0f, float depth = 0.0f, float xOrigin = 0.5f, float yOrigin = 0.5f);
 	virtual void drawSpriteTransformed4x4(Texture* texture, float* transformMat4x4, float width = 0.0f, float height = 0.0f, float depth = 0.0f, float xOrigin = 0.5f, float yOrigin = 0.5f);
-
+	virtual void drawBullet(Texture* texture, float xPos, float yPos, float width = 0.0f, float height = 0.0f, float rotation = 0.0f, float depth = 0.0f, float xOrigin = 0.5f, float yOrigin = 0.5f);
 	// draws a simple coloured line with a given thickness
 	// depth is in the range [0,100] with lower being closer to the viewer
 	virtual void drawLine(float x1, float y1, float x2, float y2, float thickness = 1.0f, float depth = 0.0f );
@@ -52,6 +55,7 @@ protected:
 	bool shouldFlush(int additionalVertices = 0, int additionalIndices = 0);
 	void flushBatch();
 	unsigned int pushTexture(Texture* texture);
+	
 
 	// indicates in the middle of a begin/end pair
 	bool				m_renderBegun;

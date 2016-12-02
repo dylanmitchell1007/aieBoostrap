@@ -3,6 +3,8 @@
 #include <iostream>		
 #include <Windows.h>
 #include <math.h>
+#include "Application2D.h"
+#include "MathLibrary.h"
 using namespace std;
 
 class Vector2

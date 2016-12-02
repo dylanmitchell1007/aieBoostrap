@@ -8,11 +8,7 @@
 class RPD : public aie::Application
 {
 	// Inherited via Application
-	virtual bool startup() override
-	{
-
-
-	}
+	virtual bool startup() override;
 
 	virtual void shutdown() override;
 

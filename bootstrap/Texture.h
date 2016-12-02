@@ -20,6 +20,7 @@ public:
 	Texture(unsigned int width, unsigned int height, Format format, unsigned char* pixels = nullptr);
 	virtual ~Texture();
 
+	float collisionX, collisionY;
 	// load a jpg, bmp, png or tga
 	bool load(const char* filename);
 
