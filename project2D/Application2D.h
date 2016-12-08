@@ -26,10 +26,11 @@ protected:
 	aie::Texture*		m_shipTexture;
 	aie::Font*			m_font;
 	aie::Audio*			m_audio;
+	aie::Texture*		m_Fallout;
 
 	float m_cameraX, m_cameraY;
 	float m_timer;
-	/*float m_Fire = 1;*/
+	float m_Fire = 1;
 	float m_ShipX = 580;
 	float m_ShipY = 370;
 	float m_circleX = 200;
