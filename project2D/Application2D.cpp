@@ -50,7 +50,9 @@ void Application2D::update(float deltaTime) {
 
 	// input example
 	aie::Input* input = aie::Input::getInstance();
+	if (m_ShipY <= 500) + (m_circleX < m_circleY);
 
+	
 	// use W,S,A,D keys to move Ship
 	if (input->isKeyDown(aie::INPUT_KEY_W))
 		m_ShipY += 500.0f * deltaTime;
