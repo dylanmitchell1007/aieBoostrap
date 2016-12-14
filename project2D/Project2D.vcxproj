@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="RPD.cpp" />
   </ItemGroup>
   <ItemGroup>

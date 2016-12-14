@@ -19,7 +19,7 @@ bool Application2D::startup() {
 	m_texture = new aie::Texture("./textures/numbered_grid.tga");
 	m_shipTexture = new aie::Texture("./textures/ship.png");
 	m_grassTexture = new aie::Texture("./textures/grass.png");
-	m_Bullet = new aie::Texture("./textures/bullet.png");
+	m_BulletTexture = new aie::Texture("./textures/bullet.png");
 	
 
 	m_font = new aie::Font("./font/consolas.ttf", 32);
@@ -66,16 +66,34 @@ void Application2D::update(float deltaTime) {
 	if (input->isKeyDown(aie::INPUT_KEY_D))
 		m_ShipX += 500.0f * deltaTime;
 
-	if (m_ShipX, m_ShipY == m_circleX, m_circleY)
+	if (m_ShipX, m_ShipY == m_collisionX, m_collisionY)
 	{
 		void end();
 	}
 
-	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
-	
-		//m_shipTexture +=  * deltaTime;*/
+	if (m_ShipY, m_ShipX == m_collisionX, m_collisionY)
+	{
+		m_collisionX, m_collisionY == 640, 720;
 
-	if (input->isKeyDown(aie::INPUT_KEY_SPACE) && m_ShipY < 580)
+	}
+
+
+	if (m_ShipY, m_ShipX == m_circleX, m_circleY)
+	{
+		void end();
+	}
+
+	////if (input->isKeyDown(aie::INPUT_KEY_SPACE))
+	//{
+	//	m_Bullet += 900.0f * deltaTime;
+	//}
+	//	
+
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
+	{
+		m_Bullet += 9000.0f;
+
+	}
 
 	//// example of audio
 	//if (input->wasKeyPressed(aie::INPUT_KEY_SPACE))
@@ -114,10 +132,16 @@ void Application2D::draw() {
 	// draw a moving white circle
 	m_2dRenderer->setRenderColour(0.6, 7, 4, 6);
 	m_2dRenderer->drawCircle(sin(m_timer) * 1250 + 525, 950, 50);
+
+	//m_2dRenderer->setRenderColour(0, 6, 7, 4, 6);
+	//m_2dRenderer->drawBullet(m_ * 1250 + 525, 950, 50);
+
 	// draw a Bullet
-	m_2dRenderer->drawBullet(m_Bullet, m_ShipX, m_ShipY, 0, 0, 0);
-	m_2dRenderer->drawSprite(m_Bullet, 30, 5, 0, 0, 0);
+	m_2dRenderer->drawBullet(m_BulletTexture, m_ShipX, m_ShipY, 9, 9);
+	m_2dRenderer->drawSprite(m_BulletTexture, 30, 5, 9, 9, 9);
 	
+
+
 	//Draw Grass/Line Texture
 	m_2dRenderer->setRenderColour(0,0,0,1);
 	m_2dRenderer->drawSprite(m_grassTexture, 680, 1025, 5000);

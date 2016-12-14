@@ -243,9 +243,11 @@ void Renderer2D::drawGrass(float xPos, float yPos, float width, float height, fl
 	drawSprite(nullptr, xPos, yPos, width, height, rotation, depth);
 }
 
+
+
 void Renderer2D::drawBullet(Texture * texture,
 	float xPos, float yPos,
-	float width, float height,
+	float Velocity, float height,
 	float rotation, float depth, float xOrigin, float yOrigin) {
 	if (texture == nullptr)
 		texture = m_nullTexture;
@@ -254,15 +256,15 @@ void Renderer2D::drawBullet(Texture * texture,
 		flushBatch();
 	unsigned int textureID = pushTexture(texture);
 
-	if (width == 0.0f)
-		width = (float)texture->getWidth();
-	if (height == 0.0f)
+	if (Velocity == 1.0f)
+		Velocity = (float)texture->getWidth();
+	if (height == 2.0f)
 		height = (float)texture->getHeight();
 
-	float tlX = (0.0f - xOrigin) * width;		float tlY = (0.0f - yOrigin) * height;
-	float trX = (1.0f - xOrigin) * width;		float trY = (0.0f - yOrigin) * height;
-	float brX = (1.0f - xOrigin) * width;		float brY = (1.0f - yOrigin) * height;
-	float blX = (0.0f - xOrigin) * width;		float blY = (1.0f - yOrigin) * height;
+	float tlX = (0.0f - xOrigin) * Velocity;		float tlY = (0.0f - yOrigin) * height;
+	float trX = (1.0f - xOrigin) * Velocity;		float trY = (0.0f - yOrigin) * height;
+	float brX = (1.0f - xOrigin) * Velocity;		float brY = (1.0f - yOrigin) * height;
+	float blX = (0.0f - xOrigin) * Velocity;		float blY = (1.0f - yOrigin) * height;
 
 	if (rotation != 0.0f) {
 		float si = glm::sin(rotation); float co = glm::cos(rotation);
