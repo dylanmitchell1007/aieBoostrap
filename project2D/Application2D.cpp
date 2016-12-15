@@ -15,13 +15,12 @@ bool Application2D::startup() {
 	
 	m_2dRenderer = new aie::Renderer2D();
 	
-	m_texture = new aie::Texture("/textures/Fallout.jpg");
 	m_texture = new aie::Texture("./textures/numbered_grid.tga");
 	m_shipTexture = new aie::Texture("./textures/ship.png");
 	m_grassTexture = new aie::Texture("./textures/grass.png");
 	m_BulletTexture = new aie::Texture("./textures/bullet.png");
 	
-
+	
 	m_font = new aie::Font("./font/consolas.ttf", 32);
 
 	m_audio = new aie::Audio("./audio/powerup.wav");
@@ -29,7 +28,9 @@ bool Application2D::startup() {
 	m_cameraX = 0;
 	m_cameraY = 0;
 	m_timer = 0;
-
+	this->m_ShipPOS = Vector2(560,231);
+	this->m_BulletPOS = Vector2(560, 231);
+	
 	return true;
 }
 
@@ -50,50 +51,63 @@ void Application2D::update(float deltaTime) {
 
 	// input example
 	aie::Input* input = aie::Input::getInstance();
-	if (m_ShipY <= 500) + (m_circleX < m_circleY);
-
-	
+	if (m_ShipPOS.vec_x, m_ShipPOS.vec_y <= 500) + (m_circleX < m_circleY);
 	// use W,S,A,D keys to move Ship
 	if (input->isKeyDown(aie::INPUT_KEY_W))
-		m_ShipY += 500.0f * deltaTime;
+		m_ShipPOS.vec_y += 500.0f * deltaTime;
 
 	if (input->isKeyDown(aie::INPUT_KEY_S))
-		m_ShipY -= 500.0f * deltaTime;
+		m_ShipPOS.vec_y -= 500.0f * deltaTime;
 
 	if (input->isKeyDown(aie::INPUT_KEY_A))
-		m_ShipX -= 500.0f * deltaTime;
+		m_ShipPOS.vec_x -= 500.0f * deltaTime;
 
 	if (input->isKeyDown(aie::INPUT_KEY_D))
-		m_ShipX += 500.0f * deltaTime;
+		m_ShipPOS.vec_x += 500.0f * deltaTime;
 
-	if (m_ShipX, m_ShipY == m_collisionX, m_collisionY)
+
+
+
+
+	if (m_ShipPOS.vec_x <= m_collisionX)
 	{
-		void end();
+		m_ShipPOS.vec_y += 580;
+	
 	}
 
-	if (m_ShipY, m_ShipX == m_collisionX, m_collisionY)
+
+	if (m_ShipPOS.vec_y <= m_collisionY)
 	{
-		m_collisionX, m_collisionY == 640, 720;
+		m_ShipPOS.vec_x = 580;
+		m_ShipPOS.vec_y = 370;
 
 	}
 
 
-	if (m_ShipY, m_ShipX == m_circleX, m_circleY)
+	if (m_ShipPOS.vec_x <= m_circleY)
 	{
-		void end();
+		m_ShipPOS.vec_x >= 580;
+		m_ShipPOS.vec_y >= 370;
 	}
 
-	////if (input->isKeyDown(aie::INPUT_KEY_SPACE))
-	//{
-	//	m_Bullet += 900.0f * deltaTime;
-	//}
-	//	
-
+	if (m_ShipPOS.vec_x <= m_circleX)
+	{
+		m_ShipPOS.vec_x = 580;
+		m_ShipPOS.vec_y = 370;
+	}
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
 	{
-		m_Bullet += 9000.0f;
-
+		//when m_Bullet hits like barrier postition reset.
+			 m_BulletPOS.vec_x += 5050;
+			if (m_BulletPOS.vec_y >= 800)
+			{
+				
+				m_BulletPOS = m_ShipPOS;
+			}
+			
 	}
+		
+
 
 	//// example of audio
 	//if (input->wasKeyPressed(aie::INPUT_KEY_SPACE))
@@ -109,7 +123,7 @@ void Application2D::draw() {
 	//set background color
 	/*setBackgroundColour(0.65f, -0.8, -0.8, 1);*/
 	m_2dRenderer->setUVRect(1, 1, 2, 3);
-	m_2dRenderer->drawSprite(m_texture, 1280, 720, 0);
+	m_2dRenderer->drawSprite(m_texture, 1920, 720, 500);
 
 	// wipe the screen to the background colour
 	clearScreen();
@@ -127,20 +141,15 @@ void Application2D::draw() {
 
 	// demonstrate spinning sprite
 	m_2dRenderer->setUVRect(0,0,1,1);
-	m_2dRenderer->drawSprite(m_shipTexture, m_ShipX, m_ShipY, 0, 0, 0);
+	m_2dRenderer->drawSprite(m_shipTexture, m_ShipPOS.getX(), m_ShipPOS.getY(), 0, 0, 0);
 
 	// draw a moving white circle
 	m_2dRenderer->setRenderColour(0.6, 7, 4, 6);
 	m_2dRenderer->drawCircle(sin(m_timer) * 1250 + 525, 950, 50);
 
-	//m_2dRenderer->setRenderColour(0, 6, 7, 4, 6);
-	//m_2dRenderer->drawBullet(m_ * 1250 + 525, 950, 50);
-
-	// draw a Bullet
-	m_2dRenderer->drawBullet(m_BulletTexture, m_ShipX, m_ShipY, 9, 9);
-	m_2dRenderer->drawSprite(m_BulletTexture, 30, 5, 9, 9, 9);
+	// draw a bullet
+	m_2dRenderer->drawCircle(m_BulletPOS.getY(), m_BulletPOS.getX(), 5);
 	
-
 
 	//Draw Grass/Line Texture
 	m_2dRenderer->setRenderColour(0,0,0,1);
@@ -168,3 +177,4 @@ void Application2D::draw() {
 	// done drawing sprites
 	m_2dRenderer->end();
 }
+

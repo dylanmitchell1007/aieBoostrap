@@ -6,8 +6,8 @@
 ////////////////////////////////////////////
 Vector2::Vector2(float xx, float yy)
 {
-	vec_x == xx;
-	vec_y == yy;
+	vec_x = xx;
+	vec_y = yy;
 }
 
 void Vector2::Add(Vector2 var) 

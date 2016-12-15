@@ -1,8 +1,9 @@
 #pragma once
-#include "MathLibrary.h"
 #include "Application.h"
 #include "Renderer2D.h"
 #include "Audio.h"
+#include "MathLibrary.h"
+
 
 class Application2D : public aie::Application {
 public:
@@ -14,8 +15,11 @@ public:
 
 	
 
-	virtual void update(float deltaTime);
+	virtual void update(float deltaTime); 
 	virtual void draw();
+
+	Vector2 m_BulletPOS; //Bullets X, Y positions at start
+	Vector2 m_ShipPOS; //Ships X, Y positions at start.
 
 protected:
 
@@ -26,18 +30,16 @@ protected:
 	aie::Texture*		m_shipTexture;
 	aie::Font*			m_font;
 	aie::Audio*			m_audio;
-	aie::Texture*		m_Fallout;
 
-	float m_cameraX, m_cameraY;
+	float m_cameraX, m_cameraY; //Cameras X, and Y positions.
 	float m_timer;
-	float m_Bullet = 880;
-	float m_Fire = '\0';
-	float m_ShipX = 580;
-	float m_ShipY = 370;
-	float m_circleX = 200;
-	float m_circleY = 200;
-	float m_collisionX = 1280;
-	float m_collisionY = 720;
 	
+	
+	float m_circleX = 200; //Circles X, positions at start.
+	float m_circleY = 200; //Circles Y, positions at start.
+	float m_collisionX; //Barriers on X axis.
+	float m_collisionY; //Barriers on Y axis.
+	
+
 
 };

@@ -2,8 +2,7 @@
 #pragma once
 #include <iostream>		
 #include <Windows.h>
-#include <math.h>
-#include "Application2D.h"
+
 
 using namespace std;
 
@@ -13,14 +12,11 @@ public:
 	Vector2() {};
 	Vector2(float xx, float yy);
 
-
 	void Add(Vector2 var);
 	
 	void Sub(Vector2 var);
 
 	void mult(float var);
-
-
 
 	Vector2 operator+(const Vector2 & add) const;
 
